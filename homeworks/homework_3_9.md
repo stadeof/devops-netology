@@ -54,3 +54,88 @@ docker run --rm -ti  drwetter/testssl.sh https://xn--32-8kcaa1d1br.site/
 
  Done 2022-10-03 10:32:05 [ 260s] -->> 84.252.73.207:443 (xn--32-8kcaa1d1br.site) <<--
 ```
+5. Выполняю следующие команды :
+```
+ssh-keygen
+```
+```
+ssh-copy-id user@ip
+```
+Мой файл ~/.ssh/config (ip и user изменены):
+
+```
+Host 10.*.23.96
+  HostName 10.*.23.96
+  User someuser
+
+Host 10.*.23.26
+  HostName 10.*.23.26
+  User someuser
+
+Host 10.*.23.13
+  HostName 10.*.23.13
+  User someuser
+
+Host 10.*.23.170
+  HostName 10.*.23.170
+  User someuser
+
+Host 10.*.23.103
+  HostName 10.*.23.103
+  User someuser
+
+Host 10.*.23.246
+  HostName 10.*.23.246
+  User someuser
+
+Host 10.*.23.75
+  HostName 10.*.23.75
+  User someuser
+
+Host 10.*.23.20
+  HostName 10.*.23.20
+  User someuser
+
+Host 10.*.23.63
+  HostName 10.*.23.63
+  User someuser
+
+Host 10.*.23.166
+  HostName 10.*.23.166
+  User someuser
+
+Host 10.*.23.60
+  HostName 10.*.23.60
+  User someuser
+
+Host 10.*.4.24
+  HostName 10.*.4.24
+  User someuser
+
+Host 10.*.23.16
+  HostName 10.*.23.16
+  User someuser
+
+Host 10.*.23.188
+  HostName 10.*.23.188
+  User someuser
+
+Host 10.*.23.30
+  HostName 10.*.23.30
+  User someuser
+
+Host 10.*.23.40
+  HostName 10.*.23.40
+  User someuser
+```
+6. Можно подключаться к серверам по HostName из задания 5 
+
+![connect](./img/connect.png)
+
+7. Выполняю команду:
+```
+sudo tcpdump -c 100 -i enp4s0 -w test.pcap
+```
+Полученный файл загружаю в Wireshark
+
+![wireshark](./img/wireshark.png)
