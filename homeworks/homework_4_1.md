@@ -49,7 +49,7 @@ do
 	curl https://localhost:4757
 	if (($? != 0))
 	then
-		date >> curl.log
+		date > curl.log
     else 
         exit
 	fi
@@ -61,30 +61,19 @@ done
 
 ### Ваш скрипт:
 ```bash
-array=(0 1 2 3 4)
-for i in ${array[@]}
+servers=(192.168.0.1 173.194.222.113 87.250.250.242)
+for i in {1..5}
 do
-	curl 192.168.0.1
-    if [ $? != 0 ]
-    then
-        echo 192.168.0.1 недоступен >> check.log
-    else
-        echo 192.168.0.1 доступен >> check.log
-    fi
-    curl 173.194.222.113
-    if [ $? != 0 ]
-    then
-        echo 173.194.222.113 недоступен >> check.log
-    else
-        echo 173.194.222.113 доступен >> check.log
-    fi
-    curl 87.250.250.242
-    if [ $? != 0 ]
-    then
-        echo 87.250.250.242 недоступен >> check.log
-    else
-        echo 87.250.250.242 доступен >> check.log
-    fi
+    for i in ${servers[@]}
+	do 
+		curl -Is --connect-timeout 10 ${i}
+		if [ $? != 0 ]
+		then
+			echo ${i} недоступен >> log
+		else
+			echo ${i} доступен >> log
+		fi
+	done
 done
 ```
 
@@ -93,33 +82,20 @@ done
 
 ### Ваш скрипт:
 ```bash
-array=(0 1 2 3 4)
-for i in ${array[@]}
+servers=(192.168.0.1 173.194.222.113 87.250.250.242)
+while ((1 == 1))
 do
-	curl 192.168.0.1
-    if [ $? != 0 ]
-    then
-        echo 192.168.0.1 недоступен >> error.log
-        exit
-    else
-        echo 192.168.0.1 доступен >> access.log
-    fi
-    curl 173.194.222.113
-    if [ $? != 0 ]
-    then
-        echo 173.194.222.113 недоступен >> error.log
-        exit
-    else
-        echo 173.194.222.113 доступен >> access.log
-    fi
-    curl 87.250.250.242
-    if [ $? != 0 ]
-    then
-        echo 87.250.250.242 недоступен >> error.log
-        exit
-    else
-        echo 87.250.250.242 доступен >> access.log
-    fi
+    for i in ${servers[@]}
+	do 
+		curl ${i}
+		if [ $? != 0 ]
+		then
+			echo ${i} недоступен >> error.log
+			exit
+		else
+			echo ${i} доступен >> access.log
+		fi
+	done
 done
 ```
 
