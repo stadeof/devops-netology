@@ -21,7 +21,7 @@ variable "zone" {
     default = "ru-central1-a"
 }
 ```
-```
+```terraform
 terraform {
   required_providers {
     yandex = {
@@ -31,7 +31,7 @@ terraform {
 }
 ```
 **main.tf:** 
-```
+```terraform
 provider "yandex" {
     cloud_id = "b1gagaienr53r9872vr0"
     folder_id = var.folder_id
