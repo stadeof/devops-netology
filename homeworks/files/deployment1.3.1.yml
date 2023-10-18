@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-multi-deployment
+  labels:
+    app: nginx-multi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-multi
+  template:
+    metadata:
+      labels:
+        app: nginx-multi
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+      - name: multitool
+        image: docker.io/wbitt/network-multitool:latest
+        env:
+        - name: HTTP_PORT
+          value: "81"
+        ports:
+        - containerPort: 81
